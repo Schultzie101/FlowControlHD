@@ -1,0 +1,43 @@
+//--INITIAILZE--
+#include <Arduino.h>
+int led_pin = 11;
+float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) {
+return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+//--Start Variables--
+float frequency_currrent; 
+int led_brightness;
+
+
+void setup() {
+  Serial.begin(115200);
+  //initialize LED digital pin as an output.
+    pinMode(LED_BUILTIN, OUTPUT);
+    pinMode(led_pin, OUTPUT);
+}
+const int SIZE = 256;
+    double items[SIZE];
+   uint8_t * items_pointer = reinterpret_cast<uint8_t*>(items);
+   const uint8_t * items_pointer_beginning = items_pointer;
+const int buffer_size = 32;
+
+void loop() { 
+  digitalWrite(LED_BUILTIN, LOW);
+  if (items_pointer-items_pointer_beginning == SIZE * __SIZEOF_DOUBLE__){
+    // Wait
+    //turn on main led
+    digitalWrite(LED_BUILTIN, HIGH);
+    for (int index = 0; index < SIZE; index++){
+      led_brightness = round(mapFloat(items[index], 0.00,1.00,0.00,255.00));
+      analogWrite(led_pin, led_brightness );
+      Serial.println(led_brightness);
+      delay(100);}
+  }
+  else {
+  if (Serial.available() >= buffer_size){
+    // Serial.readBytes(reinterpret_cast<uint8_t*>(items), buffer_size);
+    Serial.readBytes(items_pointer, buffer_size);
+    items_pointer += buffer_size;
+  }
+}
+}
