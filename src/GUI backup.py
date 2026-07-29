@@ -126,23 +126,18 @@ if __name__== "__main__":
     self.title("FlowControl-HD")
     self.geometry("890x710")
     self.resizable(False, False)
-    window_upper = ctk.CTkFrame(master=self, fg_color="transparent")
-    window_upper.pack(pady=10,padx=10, fill="x")
-    window_lower = ctk.CTkFrame(master=self, fg_color="transparent")
-    window_lower.pack(pady=10, padx=10, fill="x")
-    window_lower.grid_columnconfigure([0,1,2,3], weight=1)
-    
+    window_frame = ctk.CTkFrame(master=self, fg_color="transparent")
 
     #setup main-window centering 
-    window_upper.pack(pady=20,padx=20,fill="both",expand=True)
-    window_upper.grid_columnconfigure(0, weight=1)
-    window_upper.grid_rowconfigure((0,1,2,), weight=1)
-    title_text = RGBTEXT(window_upper, text="[ FlowControl-HD ]", font=("Arial",40, "bold"))
+    window_frame.pack(pady=20,padx=20,fill="both",expand=True)
+    window_frame.grid_columnconfigure(0, weight=1)
+    window_frame.grid_rowconfigure((0,1,2,3,4), weight=1)
+    title_text = RGBTEXT(window_frame, text="[ FlowControl-HD ]", font=("Arial",40, "bold"))
     title_text.grid(column=0,row=0)
 
 
     # --Textbox for selected file--
-    array_textbox = ctk.CTkTextbox(master=window_upper, width=850, height=400,)
+    array_textbox = ctk.CTkTextbox(master=window_frame, width=850, height=400,)
     array_textbox.grid(column=0, row=3)
     #Serial port. 
     serial_port = "/dev/ttyACM0"
@@ -150,24 +145,24 @@ if __name__== "__main__":
 
 
     #Buttons for main window
-    import_file = ctk.CTkButton(master=window_upper, text="Import File", 
+    import_file = ctk.CTkButton(master=window_frame, text="Import File", 
                                 font=("Arial",25,"bold"), width=400, height=50, command=OPEN_FILE)
     import_file.grid(column=0, row=1)
 
     #--Show current selected file--
-    file_selected = ctk.CTkLabel(master=window_upper, text="No file is currently selected.")
+    file_selected = ctk.CTkLabel(master=window_frame, text="No file is currently selected.")
     file_selected.grid(column=0,row=2)
 
     # Preview Graph
-    still_graph = ctk.CTkButton(master=window_lower, text="Preview",  font=("Arial",25,"bold"), width=700, height=60,command=FILE_SELECTION_CHECK)
-    still_graph.grid(column=0, row=0,)
+    still_graph = ctk.CTkButton(master=window_frame, text="Preview",  font=("Arial",25,"bold"), width=700, height=45,command=FILE_SELECTION_CHECK)
+    still_graph.grid(column=0, row=4,)
 
     #Upload Array
-    upload_array = ctk.CTkButton(master=window_lower, text="Upload Array",  font=("Arial",25,"bold"), width=700, height=60,command=UPLOAD_ARRAY)
-    upload_array.grid(column=1, row=0,)
+    upload_array = ctk.CTkButton(master=window_frame, text="Upload Array",  font=("Arial",25,"bold"), width=700, height=45,command=UPLOAD_ARRAY)
+    upload_array.grid(column=0, row=5,)
 
     #Live graph
-    live_graph  = ctk.CTkButton(master=window_lower, text="Live Graph",  font=("Arial",25,"bold"), width=700, height=60,command=FILE_UPLOAD_CHECK)
-    live_graph.grid(column=2, row=0,)
+    live_graph  = ctk.CTkButton(master=window_frame, text="Live Graph",  font=("Arial",25,"bold"), width=700, height=45,command=FILE_UPLOAD_CHECK)
+    live_graph.grid(column=0, row=6,)
 
     self.mainloop()
