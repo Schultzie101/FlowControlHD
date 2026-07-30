@@ -12,6 +12,14 @@ pip install pyserial
 pip install customtkinter
 pip install pyrealtime
 ```
+### 🔌️ Materials
+- Arduino UNO R3
+    - Motor Shield: (Remove the connection between the power-supply and vin for the arduino.)
+- External Power supply
+- Flow sensor (Specific one used in this project linked here: https://www.digikey.ca/en/products/detail/dfrobot/SEN0549/18069228)
+- Motor (Specific one used in this project linked here: https://www.kamoer.com/us/product/detail.html?id=10017)
+- Plastic tubing (Specific one used in this project are: 3mm tubing & 6mm)
+  
 ## Features
 ### 🌸️ User friendly interface
   <img width="1639" height="708" alt="inferface" src="https://github.com/user-attachments/assets/f76dd43b-078a-4a78-b0d3-ae5d1531a887" />
