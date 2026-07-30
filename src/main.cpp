@@ -70,7 +70,7 @@ void loop() {
     //turn on main led
     digitalWrite(LED_BUILTIN, HIGH);
     // Change direction. High = clockwise LOW= counterclockwise
-    digitalWrite(directionPin, LOW);
+    digitalWrite(directionPin, HIGH);
     digitalWrite(brakePin, LOW);
     for (int index = 0; index < SIZE; index++){
         // Convert volume to flow rate
