@@ -132,6 +132,7 @@ if __name__== "__main__":
     self = ctk.CTk()
     self.title("FlowControl-HD")
     self.geometry("890x710")
+    self.minsize(550, 710)
     #self.resizable(False, False)
     #---------------------------------------------------------------
     window_upper = ctk.CTkFrame(master=self, fg_color="transparent")
