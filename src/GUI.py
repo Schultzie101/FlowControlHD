@@ -134,11 +134,15 @@ if __name__== "__main__":
     self.geometry("890x710")
     #self.resizable(False, False)
     #---------------------------------------------------------------
-    # window_upper = ctk.CTkFrame(master=self, fg_color="transparent")
-    # window_upper.pack(pady=10, padx=10, fill="x")
-    # window_upper.grid_columnconfigure([0,1], weight=1)
+    window_upper = ctk.CTkFrame(master=self, fg_color="transparent")
+    window_upper.pack(pady=10, padx=10, fill="x")
+    window_upper.grid_columnconfigure(0, weight=1)
+    window_upper.grid_rowconfigure((3), weight=0)
+    window_upper.grid_rowconfigure((0), weight=0)
+    window_upper.grid_rowconfigure((1,2), weight=0)
+
     window_middle = ctk.CTkFrame(master=self, fg_color="transparent")
-    window_middle.pack(pady=10,padx=10, fill="x")
+    window_middle.pack(pady=10,padx=10, fill="both")
     window_lower = ctk.CTkFrame(master=self, fg_color="transparent")
     window_lower.pack(pady=10, padx=10, fill="x")
     window_lower.grid_columnconfigure([0,1,2,3], weight=1)
@@ -148,29 +152,27 @@ if __name__== "__main__":
     #setup main-window centering 
     window_middle.pack(pady=20,padx=20,fill="both",expand=True)
     window_middle.grid_columnconfigure(0, weight=1)
-    window_middle.grid_rowconfigure((3), weight=0)
-    window_middle.grid_rowconfigure((0), weight=0)
-    window_middle.grid_rowconfigure((1,2), weight=0)
+    window_middle.grid_rowconfigure((0), weight=1)
     #---------------------------------------------------------------
-    title_text = RGBTEXT(window_middle, text="[ FlowControl-HD ]", font=("Arial",40, "bold"))
-    title_text.grid(column=0)
+    title_text = RGBTEXT(window_upper, text="[ FlowControl-HD ]", font=("Arial",40, "bold"))
+    title_text.grid(column=0, row=0)
 
 
     # --Textbox for selected file--
     array_textbox = ctk.CTkTextbox(master=window_middle, width=850, height=400,)
-    array_textbox.grid(column=0, row=3, sticky="nsew")
+    array_textbox.grid(column=0, row=0, sticky="nsew")
     #Serial port. 
     serial_port = "/dev/ttyACM0"
     baud_rate = 115200
 
 
     #Buttons for main window
-    import_file = ctk.CTkButton(master=window_middle, text="Import File", 
+    import_file = ctk.CTkButton(master=window_upper, text="Import File", 
                                 font=("Arial",25,"bold"), width=400, height=50, command=OPEN_FILE)
     import_file.grid(column=0, row=1)
 
     #--Show current selected file--
-    file_selected = ctk.CTkLabel(master=window_middle, text="No file is currently selected.")
+    file_selected = ctk.CTkLabel(master=window_upper, text="No file is currently selected.")
     file_selected.grid(column=0,row=2)
 
     # Preview Graph
