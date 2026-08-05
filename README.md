@@ -22,17 +22,22 @@ pip install pyrealtime
   
 ## Features
 ### 🌸️ User friendly interface
-  <img width="1639" height="708" alt="inferface" src="https://github.com/user-attachments/assets/f76dd43b-078a-4a78-b0d3-ae5d1531a887" />
+<img width="1307" height="715" alt="Screenshot from 2026-08-05 11-27-38" src="https://github.com/user-attachments/assets/ce9e474c-377f-42a4-94e9-6bca95110a70" />
+
   
-  ### 📷️ Live Graph which displays output from arduino over Pyserial
+  ### 📷️ Live Graph: displays output from Arduino or flow sensor over Pyserial
   <img width="600" height="405" alt="Screencastfrom2026-07-29110630AM-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/72ada6c3-df7b-43f5-b9d8-3c8ae9b2ea50" />
 
 ## How To Use
-- Build & Upload 'main.cpp' to the arduino with platform IO.
+- Build & Upload 'main.cpp' to the Arduino with platform IO.
 - Turn on the power supply.
 - Run the python program. 
 - To import a csv file into the program, click on import file. Then, the contents of the file you have selected will be displayed in the output box.
 Once you have your file selected, ensure you have viewed the 'preview' graph to know the expected output. Then, click upload and now you should be able to view
-live input by clicking the bottom button. 
+live input by clicking the bottom button.
+
+**To change Live Graph to display either Arduino or flow sensor output:**
+  - Find the line near the end of "Main.cpp" which contains two comments about its function and warnings.
+  - Edit "Serial.println();" to either "Serial.println(array);" or "Serial.println(flow_average);"
 ### ⚠️ WARNING!!!
 Ensure you follow the steps in order, otherwise bugs or other issues may occur.
