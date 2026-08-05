@@ -1,6 +1,5 @@
 #---IMPORT LIBARYS---
 import numpy as np
-import struct
 import customtkinter as ctk
 from customtkinter import filedialog
 import serial 
@@ -8,7 +7,6 @@ import serial
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')
-import matplotlib.animation as animation
 import mplcyberpunk
 import colorsys
 import time 
@@ -86,7 +84,6 @@ def GRAPH_WINDOW():
 def LIVE_GRAPH_WINDOW():
     #Pyrealtime 
     serial_layer = prt.SerialReadLayer(device_name=serial_port, baud_rate=baud_rate)
-    ##prt.TimePlotLayer(serial_layer, window_size=200, ylim=(90, 256))
     prt.TimePlotLayer(serial_layer, window_size=200, ylim=(0,10000))
     prt.LayerManager.session().run()
 
@@ -134,6 +131,8 @@ if __name__== "__main__":
     self.geometry("890x710")
     self.minsize(550, 710)
     #self.resizable(False, False)
+
+    #Three frames for scaling purposes. 
     #---------------------------------------------------------------
     window_upper = ctk.CTkFrame(master=self, fg_color="transparent")
     window_upper.pack(pady=10, padx=10, fill="x")

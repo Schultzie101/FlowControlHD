@@ -132,7 +132,10 @@ void loop() {
       if (flow_index >= array_size) {
       flow_index = 0;
       }
-      Serial.println(flow_average);
+      
+      //Line which will be sent back for the graph in the python program. However, this can also be previewed with the serial monitor. 
+      //DO NOT open the serial monitor with the GUI.py open. this will result in a crash or unexpected behavior. 
+      Serial.println(flowrate);
       delay(200);
     }
   }
