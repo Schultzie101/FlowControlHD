@@ -21,7 +21,7 @@ const double TIME_INTERVAL = 0.1; // seconds
 bool timer_started = false; 
 
 //--BUTTON VARIABLES 
-int buttonPin = 7;
+int buttonPin = 3;
 int value = 0;
 
 //Note: Larger "array_size" means more points for the "frequency_array" to calculate. 
@@ -57,19 +57,29 @@ float array_average(float array [], int size4array){
   return average;
 }
 
-
+void BUTTON_CHECK() //Action to change direction whether or not the button is pressed. 
+  {
+    // Change direction. High = clockwise LOW= counterclockwise
+    // BUTTON DIRECTION
+    value = digitalRead(buttonPin);
+    digitalWrite(brakePin, LOW);
+    if(value == 1){
+      digitalWrite(directionPin, HIGH);
+    }
+    if(value == 0){
+      digitalWrite(directionPin, LOW);
+    }
+  }
 
 
 // This function runs automatically every TIME_INTERVAL
 void calculate_slope() {
   static double previous_volume = 0; // Remembers value between interrupts (only sets to 0 the first time it's run)
-
   double current_volume = volume;
 
   // slope = rise / run = change in Y / change in X
-  flowrate = (current_volume - previous_volume) / TIME_INTERVAL;
+  flowrate = (current_volume - previous_volume) / TIME_INTERVAL * 60;
   previous_volume = current_volume;
-  flowrate = volume * 60;
 }
 
 
@@ -87,7 +97,8 @@ void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(directionPin, OUTPUT);
     pinMode(brakePin, OUTPUT);
-  attachInterrupt(digitalPinToInterrupt(sensorPin), pulse, RISING);  //DIGITAL Pin 3: Interrupt 0
+  attachInterrupt(digitalPinToInterrupt(sensorPin), pulse, RISING);  //DIGITAL Pin 2: Interrupt 0
+  attachInterrupt(digitalPinToInterrupt(buttonPin), BUTTON_CHECK, CHANGE); //DIGITAL Pin 3:
   
 
   Timer1.initialize((int) TIME_INTERVAL * 1000000); // takes in us (microseconds)
@@ -105,19 +116,8 @@ void loop() {
       timer_started = true;
     } 
     //We have now loaded all the data
-    //turn on main led
+    //turn on main led and check for button press 
     digitalWrite(LED_BUILTIN, HIGH);
-    // Change direction. High = clockwise LOW= counterclockwise
-    // BUTTON DIRECTION
-    value = digitalRead(buttonPin);
-    digitalWrite(brakePin, LOW);
-    if(value == 1){
-      digitalWrite(directionPin, HIGH);
-    }
-    if(value == 0){
-      digitalWrite(directionPin, LOW);
-    }
-
 
     for (int index = 0; index < SIZE; index++){
       led_brightness = round(mapFloat(items[index], 0.00,1.00,minimum_pwm,255.00));
@@ -132,10 +132,11 @@ void loop() {
       if (flow_index >= array_size) {
       flow_index = 0;
       }
-      
+
       //Line which will be sent back for the graph in the python program. However, this can also be previewed with the serial monitor. 
       //DO NOT open the serial monitor with the GUI.py open. this will result in a crash or unexpected behavior. 
-      Serial.println(flowrate);
+      Serial.println(volume);
+      //note: as of now, "flow_average" only displays the total volume that went through the sensor (averaged)
       delay(200);
     }
   }
