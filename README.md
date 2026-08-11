@@ -25,8 +25,10 @@ pip install pyrealtime
 <img width="1307" height="715" alt="Screenshot from 2026-08-05 11-27-38" src="https://github.com/user-attachments/assets/ce9e474c-377f-42a4-94e9-6bca95110a70" />
 
   
-  ### 📷️ Live Graph: displays output from Arduino or flow sensor over Pyserial
-  <img width="600" height="405" alt="Screencastfrom2026-07-29110630AM-ezgif com-video-to-gif-converter" src="https://github.com/user-attachments/assets/72ada6c3-df7b-43f5-b9d8-3c8ae9b2ea50" />
+  ### 📷️ Live Graph: displays total volume output from flow sensor over Pyserial
+<img width="632" height="516" alt="Screenshot from 2026-08-11 14-52-18" src="https://github.com/user-attachments/assets/5a49a16a-39e8-4220-a0fe-825161d5176b" />
+<img width="632" height="516" alt="Screenshot from 2026-08-11 14-52-03" src="https://github.com/user-attachments/assets/d82a8d36-df55-4c18-a03e-b47829203620" />
+
 
 ## How To Use
 - Build & Upload 'main.cpp' to the Arduino with platform IO.
