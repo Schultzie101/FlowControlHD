@@ -1,6 +1,5 @@
 //--INITIAILZE--
 #include <Arduino.h>
-#include <TimerOne.h>
 
 int directionPin = 13;
 int pwmPin = 11;
@@ -107,11 +106,6 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(sensorPin), pulse, RISING);  //DIGITAL Pin 2: Interrupt 0
   attachInterrupt(digitalPinToInterrupt(buttonPin), BUTTON_CHECK, CHANGE); //DIGITAL Pin 3:
   
-
-  // //Timer1.initialize((int) TIME_INTERVAL * 1000000); // takes in us (microseconds)
-  // Timer1.initialize(80000); // takes in us (microseconds)
-  // Timer1.attachInterrupt(calculate_slope);
-  // Timer1.stop();
 }
 
 void loop() { 
@@ -132,7 +126,7 @@ void loop() {
 
       //Line which will be sent back for the graph in the python program. However, this can also be previewed with the serial monitor. 
       //DO NOT open the serial monitor with the GUI.py open. this will result in a crash or unexpected behavior. 
-      Serial.println(flowrate_copy);
+      Serial.println(volume);
       delay(200);
     }
   }

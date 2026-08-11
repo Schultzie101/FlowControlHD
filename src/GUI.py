@@ -84,7 +84,9 @@ def GRAPH_WINDOW():
 def LIVE_GRAPH_WINDOW():
     #Pyrealtime 
     serial_layer = prt.SerialReadLayer(device_name=serial_port, baud_rate=baud_rate)
-    prt.TimePlotLayer(serial_layer, window_size=200, ylim=(0,500))
+    prt.TimePlotLayer(serial_layer, window_size=200, ylim=(0,250))
+    plt.xlabel("Time (samples)")
+    plt.ylabel("Volume (mL)")
     prt.LayerManager.session().run()
 
 def ERROR_WINDOW_IMPORT():
