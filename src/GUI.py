@@ -1,4 +1,5 @@
 #---IMPORT LIBARYS---
+from pathlib import Path
 import numpy as np
 import customtkinter as ctk
 from customtkinter import filedialog
@@ -125,7 +126,8 @@ def FILE_SELECTION_CHECK_4UP():
 if __name__== "__main__":
     #---INITIALIZE CTK--
     ctk.set_appearance_mode("Dark")
-    ctk.set_default_color_theme("/home/emma/Documents/PlatformIO/Unsorted-Seed2Stem-2026-/Projects/Realistic Pulse 2 Digital/src/pink.json")
+    src_folder = Path(__file__).resolve().parent
+    ctk.set_default_color_theme(src_folder / "pink.json")
 
     # ---GUI--- 
     self = ctk.CTk()
